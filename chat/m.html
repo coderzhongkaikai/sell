@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="paint">
+        <canvas id="canvas" width="500" height="400" style="border:1px solid #c3c3c3;"></canvas>
+</div>
+<input accept="image/*"  type="file" id="uploadIMG"  onchange="btnUploadFile(event)"/> 
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+ 
+    function btnUploadFile(e,type){
+        var files = e.target.files;
+        var file = files[0];
+        if (!/\/(?:jpeg|jpg|png)/i.test(file.type)){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function() { 
+            var result = this.result;  
+            var img=new Image()
+            img.src=result;
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            //console.log(result)
+            img.onload = function(){
+                context.drawImage(img,0,0,500,400);
+            }
+        };
+        reader.readAsDataURL(file);    
+    } 
+
+    window.onload=function(){
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        paint(context);
+    }
+    function paint(context){
+        var temp = false;
+        $("canvas").mousedown(function(event){
+            temp=true;
+            var x = event.pageX-8;
+            var y = event.pageY-8;
+            context.moveTo(x,y);
+        })
+        $("canvas").mousemove(function(e){
+            var x = e.pageX-8;
+            var y = e.pageY-8;
+            //$("#info").html("( "+x+" , "+y+" )");
+            if(temp){
+                context.lineTo(x,y);
+                context.stroke();
+            }else{
+                context.beginPath()
+            }
+        })
+        $("canvas").mouseup(function(e){
+            temp=false;
+        })
+    } 
+</script>
+</html>

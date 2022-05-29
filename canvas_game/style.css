@@ -1,0 +1,16 @@
+body {
+  background: #f6f6f6;
+  text-align: center;
+}
+.wrapper {
+  width: 800px;
+  height: 456px;
+  position: relative;
+  margin: 24px auto;
+}
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+}

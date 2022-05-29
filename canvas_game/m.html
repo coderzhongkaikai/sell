@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    .a {
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid #232323;
+    }
+
+    .float {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background: red;
+        color: white;
+        position: absolute;
+
+    }
+
+    p {
+        width: 200px;
+        height: 200px;
+        background: blue;
+        color: white;
+        /* overflow: hidden;d */
+        /* float: left; */
+        /* display: inline-block; */
+        position: fixed;
+    }
+
+    .aside {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: #f66;
+        overflow: hidden;
+
+    }
+
+    .main {
+
+        /* overflow: hidden; */
+        width: 100px;
+        height: 100px;
+        background-color: purple;
+        /* 核心代码 */
+        position: absolute;
+        margin: auto;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+    }
+
+    body {
+        /* position: absolute; */
+
+        /* position: relative; */
+    }
+</style>
+
+<body>
+    <div class="aside"></div>
+    <div class="main"></div>
+
+</body>
+<script>
+function inheritObject(o) {
+  //声明一个过渡对象
+  function F() { }
+  //过渡对象的原型继承父对象
+  console.log(o)
+  F.prototype = o;
+  //返回过渡对象的实例，该对象的原型继承了父对象
+  return new F();
+}
+
+function inheritPrototype(subClass,superClass) {
+    // 复制一份父类的原型副本到变量中
+    console.log(superClass)
+  var p = inheritObject(superClass.prototype);
+    console.log(p)
+  // 修正因为重写子类的原型导致子类的constructor属性被修改
+  p.constructor = subClass;
+  // 设置子类原型
+  subClass.prototype = p;
+}
+
+function SuperClass(name) {
+  this.name = name;
+  this.books=['js book','css book'];
+}
+SuperClass.prototype.name='zkk'
+SuperClass.prototype.getName = function() {
+  console.log(this.name);
+}
+function SubClass(name,time) {
+  SuperClass.call(this,name);
+  this.time = time;
+}
+inheritPrototype(SubClass,SuperClass);
+SubClass.prototype.getTime = function() {
+  console.log(this.time);
+}
+var instance1 = new SubClass('React','2017/11/11')
+var instance2 = new SubClass('Js','2018/22/33');
+
+instance1.books.push('test book');
+
+console.log(instance1.books,instance2.books);
+instance2.getName();
+instance2.getTime();
+ 
+</script>
+
+</html>

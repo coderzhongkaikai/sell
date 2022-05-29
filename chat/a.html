@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绘图</title>
+</head>
+<body>
+    <div class="paint">
+        <canvas id="canvas" width="500" height="400" style="border:1px solid #c3c3c3;"></canvas>
+    </div>
+    <input accept="image/*"  type="file" id="uploadIMG"  onchange="btnUploadFile(event)"/>
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script>
+ 
+<script>
+    var socket = io("http://localhost:3000");
+    socket.on('connect',function(){
+        console.log('连接成功')
+    })
+    socket.on('disconnect',function(){
+        console.log('断开连接')
+    })
+
+    function btnUploadFile(e,type){
+        var files = e.target.files;
+        var file = files[0];
+        if (!/\/(?:jpeg|jpg|png)/i.test(file.type)){
+            return;
+        }
+        
+        var reader = new FileReader();
+        reader.onload = function() { 
+            var result = this.result;  
+            console.log("+++++++++")
+            socket.emit("send",result)
+        };        
+        reader.readAsDataURL(file);    
+    }
+    socket.on('msg',function(data){
+        var img=new Image()
+        console.log(data)
+        img.src=data;
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        //console.log(result)
+        img.onload = function(){
+            context.drawImage(img,0,0,500,400);
+        }
+    })
+
+    window.onload=function(){
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        paint(context);
+    }
+    function paint(context){
+        var temp = false;
+        $("canvas").mousedown(function(e){
+            temp=true;
+            var x = e.offsetX-8;
+            var y = e.offsetY-8;
+            context.moveTo(x,y);
+            socket.emit("send1",[x,y])
+        })
+        $("canvas").mousemove(function(e){
+            var x = e.offsetX-8;
+            var y = e.offsetY-8;
+            //$("#info").html("( "+x+" , "+y+" )");
+            socket.emit("send2",[x,y])
+            if(temp){
+                context.lineTo(x,y);
+                context.stroke();
+            }
+        })
+        $("canvas").mouseup(function(e){
+            temp=false;
+            socket.emit("send3",1)
+        })
+    }
+</script>
+</html>

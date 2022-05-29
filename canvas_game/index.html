@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - clump </title>
+  <link rel="stylesheet" href="./style.css">
+  <!--以下两行为阿里播放器调用的CSS和JS-->
+  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.16/skins/default/aliplayer-min.css" />
+  <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.9.16/aliplayer-min.js">
+  </script>
+  <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div>开始游戏后，按住d前进,a后退,w向上,s向下,尽可能的远离黑色的障碍物。</div>
+
+  <div class="wrapper">
+    <canvas id="bottom" width="800" height="600"></canvas>
+    <canvas id="background" width="800" height="432"></canvas>
+    <canvas id="canvas" width="800" height="432"></canvas>
+    <canvas id="foreground" width="800" height="432"></canvas>
+  </div>
+
+  <audio id="audio" src="http://gcdncs.101.com/v0.1/static/voc_content/audio_test/text2audio.mp3"
+    class="preview_attach_content_audio">
+  </audio>
+
+  <div>
+    <audio id="myAudio" >
+      <source id="myAudio_source" >
+      <!-- <source id="myAudio_source"
+      src="https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text=玄武湖五洲之间，桥堤相通，风光有异，各具其胜，形成了“环洲烟雨”、“樱洲花海”、“菱洲山岚”、“梁洲秋菊”、“翠洲云树”等不同特色。环湖还有玄武晨曦、武庙古闸、明城探幽、十里长堤、水上乐园、观赏园艺、杉林氧吧等景点。
+玄武湖历史悠久。公元前221年的先秦到西汉分别称作秣陵湖、蒋陵湖。南朝时，出于帝王都“四神布局”的需要，始称“玄武”。明洪武十四年（1381年），朱元璋建后湖黄册库（中央档案馆）。明亡后，玄武湖重新对外开放，清康熙、乾隆帝均曾来此游历并留下诗词。两江总督曾国藩在梁洲重修湖神庙，并增建湖心亭、大仙楼、观音阁、赏荷厅。晚清名臣左宗棠还修筑了连通孤凄埂与梁洲的长堤，从而不再“必自太平门出，令舟而行”。清宣统元年（1909年），端方等开辟丰润门（今玄武门），筑新堤，扩大湖内绿地，徐绍桢又建陶公亭及湖山览胜楼。民国时，绿地面积进一步扩大，花卉品种增多，玄武厅、诺那塔、凇沪抗战纪念塔等先后落成。解放以后，对玄武湖进行了大规模的扩建改造，迁出湖民，广植花草，多增景点，面貌全新。2010年10月1日起免费开放，游人如织。"
+      type="audio/mpeg"> -->
+    </audio>
+  </div>
+  <!-- partial -->
+
+  <script src="./index.js"></script>
+
+  <!-- <script src="./script.js"></script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>story_chat</title>
+  <meta name="referrer" content="no-referrer">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <!-- <link rel="stylesheet" href="./index.css"> -->
+</head>
+
+<body>
+  <div class="root">
+    <div class="login_card">
+      <div class="name">
+        <input type="text" id="name" placeholder="请输入登录名..." autocomplete="off">
+        <button id="nameBtn">确 定</button>
+      </div>
+    </div>
+
+    <div class="card_list">
+      <div class="top">
+        <div class="t_l">
+          <div class="user_name">
+
+          </div>
+        </div>
+        <div class="t_r">
+          <button id="createBtn">创建新故事</button>
+        </div>
+
+      </div>
+
+      <div class="box">
+      </div>
+
+      <div class="create_form">
+        <div class="pop">
+        </div>
+        <div class="form">
+          <input type="file" accept="image/*" name="file" id="uploadImg">
+          <input class="titleInput" type="text" name="title" placeholder="请输入故事名称..." autocomplete="off">
+          <textarea id="contentInput" placeholder="请输入故事内容..." autofocus name="content"></textarea>
+          <button id="btnForm" >提交</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="main" >
+      <div class="header">
+      
+        <div class="chat_info">
+          <div class="top_nav"></div>
+          <div class="img">
+            <canvas id="canvas"style="border:1px solid #c3c3c3;"></canvas>
+          </div>
+          <div class="foot"></div>
+        </div>
+      </div>
+
+      <div id="container">
+          <div class="conversation">
+            <ul id="messages"></ul>
+             <div>
+              <textarea id="m" autofocus></textarea>
+              <button class="btn rBtn" id="sub">发送</button>
+              <button class="btn" id="close_chat">关闭</button>
+             </div>
+            <!-- </form> -->
+          </div>
+
+          <div class="contacts">
+            <h1>在线人员(<span id="num">0</span>)</h1>
+            <ul id="users"></ul>
+            <p>当前无人在线哟~</p>
+          </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <div class="info_side">
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+ 
+</body>
+
+</html>

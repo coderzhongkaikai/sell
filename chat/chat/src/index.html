@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Socket.IO chat</title>
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <!-- <link rel="stylesheet" href="./index.css"> -->
+</head>
+
+<body>
+  <div class="root">
+    <div class="login_card">
+      <div class="name">
+        <input type="text" id="name" placeholder="请输入昵称..." autocomplete="off">
+        <button id="nameBtn">确 定</button>
+      </div>
+    </div>
+
+    <div class="card_list">
+      <div class="top">
+        <div class="t_l">
+          <div class="user_name">
+            hhhh
+          </div>
+        </div>
+        <div class="t_r">
+          <button id="createBtn">创建新故事</button>
+        </div>
+
+      </div>
+
+      <div class="box">
+        <div class="story_info">
+          <div class="top_nav">名称_创建者_创建时间</div>
+          <div class="img">
+            <img style="width: 100%;height: 100%;" src="./image/bg3.jpg" alt="">
+          </div>
+          <div class="foot">这里面是什么故事啊</div>
+        </div>
+
+        <div class="story_info">
+          <div class="top_nav">名称_创建者_创建时间</div>
+          <div class="img">
+            <img style="width: 100%;height: 100%;" src="./image/bg3.jpg" alt="">
+          </div>
+          <div class="foot">这里面是什么故事啊</div>
+        </div>
+
+      </div>
+
+      <div class="create_from">
+        <div class="from">
+          <form>
+            <input class="titleinput" type="text" placeholder="请输入故事名称..." autocomplete="off">
+            <input type="file">
+            <input class="titleinput" type="text" placeholder="请输入故事内容..." autocomplete="off">
+            <input type="submit" value="提交">
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="header">
+        <!-- <img src="image/logo.jpg">
+        happy聊天室 -->
+        <div class="chat_info">
+          <div class="top_nav">名称_创建者_创建时间</div>
+          <div class="img">
+            <img style="width: 100%;height: 100%;" src="./image/bg3.jpg" alt="">
+          </div>
+          <div class="foot">这里面是什么故事啊</div>
+        </div>
+      </div>
+      <div id="container">
+        <div class="conversation">
+          <ul id="messages"></ul>
+          <form action="">
+            <div class="edit">
+              <input type="color" id="color" value="#000000">
+              <i title="自定义字体颜色" id="font" class="fa fa-font">
+              </i><i title="双击取消选择" class="fa fa-smile-o" id="smile">
+              </i><i title="单击页面震动" id="shake" class="fa fa-bolt">
+              </i>
+              <input type="file" id="file">
+              <i class="fa fa-picture-o" id="img"></i>
+              <div class="selectBox">
+                <div class="smile" id="smileDiv">
+                  <p>经典表情</p>
+                  <ul class="emoji"></ul>
+                </div>
+              </div>
+            </div>
+            <!-- autocomplete禁用自动完成功能 -->
+            <textarea id="m" autofocus></textarea>
+            <button class="btn rBtn" id="sub">发送</button>
+            <button class="btn" id="clear">关闭</button>
+          </form>
+        </div>
+        <div class="contacts">
+          <h1>在线人员(<span id="num">0</span>)</h1>
+          <ul id="users"></ul>
+          <p>当前无人在线哟~</p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <!-- 加载全局io -->
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+
+  <script>
+    $.ajax({
+      url: '/get',
+      type: 'get', // 请求类型，常用的有 GET 和 POST
+      data: {
+        // 请求参数
+      },
+      headers: {
+          "Access-Control-Allow-Origin": "*",
+          'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      success: function (data) { // 接口调用成功回调函数
+        console.log(data)
+        // data 为服务器返回的数据
+      }
+    });
+    // 获取远端图片
+    // axios({
+    //     method: 'get',
+    //     url: 'http://localhost:3030/create',
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded',
+    //     }
+    //   })
+    //   .then(function (response) {
+    //     console.log(response)
+
+    //   });
+  </script>
+</body>
+
+</html>
